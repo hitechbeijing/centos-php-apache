@@ -17,11 +17,11 @@ RUN make install
 RUN echo -e ";  Enable redis extension module\nextension=redis.so" > /etc/php.d/redis.ini
 WORKDIR /
 RUN rm -rf redis-4.3.0 redis-4.3.0.tgz
-RUN echo -e ":set encoding=utf-8\n\
-:set fileencodings=ucs-bom,utf-8,cp936\n\
-:set fileencoding=gbk\n\
-:set termencoding=utf-8" > /root/.vimrc
-#RUN echo "export.UTF-8" >> /etc/profilesource /etc/profile
+# RUN echo -e ":set encoding=utf-8\n\
+# :set fileencodings=ucs-bom,utf-8,cp936\n\
+# :set fileencoding=gbk\n\
+# :set termencoding=utf-8" > /root/.vimrc
+# RUN echo "export.UTF-8" >> /etc/profilesource /etc/profile
 RUN cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN yum install kde-l10n-Chinese -y
 RUN yum install glibc-common -y
