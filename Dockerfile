@@ -4,8 +4,8 @@ RUN curl -o /etc/yum.repos.d/CentOS7-Base-163.repo http://mirrors.163.com/.help/
 RUN yum install -y wget
 RUN yum clean all
 RUN yum makecache
-RUN yum install -y php php-gd php-pdo php-xml php-devel php-xmlrpc php-process php-mysql php-mbstring php-bcmath php-odbc php-cli php-ldap php-common php-pear
-RUN yum install -y gcc gcc-c++
+RUN yum install -y mod_php72w php72w-gd php72w-pdo php72w-xml php72w-devel php72w-common php72w-xmlrpc php72w-process php72w-mysql php72w-mbstring php72w-bcmath php72w-odbc php72w-cli php72w-ldap php72w-pear
+RUN yum install -y gcc gcc-c++ autoconf pcre-devel
 RUN yum install -y httpd mod_ssl
 RUN wget http://pecl.php.net/get/redis-4.3.0.tgz
 RUN tar -xzvf redis-4.3.0.tgz
