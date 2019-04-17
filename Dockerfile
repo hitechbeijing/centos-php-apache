@@ -2,7 +2,7 @@ FROM centos:7
 RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 RUN curl -o /etc/yum.repos.d/CentOS7-Base-163.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo 
 RUN yum install -y wget
-RUN yum install epel-release
+RUN yum install -y epel-release
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 RUN yum clean all
 RUN yum makecache
