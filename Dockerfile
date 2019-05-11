@@ -46,6 +46,6 @@ FROM centos:7
 # ENV LC_ALL zh_CN.UTF-8
 # RUN systemctl enable httpd.service
 # ENTRYPOINT ["/usr/sbin/init"]
-EXPOSE 80
+EXPOSE 80 443
 RUN  httpd -v
-ENTRYPOINT ["httpd", "-DFOREGROUND"]
+CMD ["httpd", "-DFOREGROUND"]
