@@ -46,4 +46,4 @@ RUN yum install -y epel-release \
 # RUN systemctl enable httpd.service
 EXPOSE 80
 RUN  httpd -v
-ENTRYPOINT ["httpd -DFOREGROUND"]
+ENTRYPOINT ["httpd" "-DFOREGROUND"]
