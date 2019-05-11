@@ -48,4 +48,4 @@ FROM centos:7
 # ENTRYPOINT ["/usr/sbin/init"]
 EXPOSE 80
 RUN  httpd -v
-ENTRYPOINT ["httpd -DFOREGROUND"]
+ENTRYPOINT ["httpd", "-DFOREGROUND"]
