@@ -119,9 +119,9 @@ ENV PHP_LDFLAGS="-Wl,-O1 -Wl,--hash-style=both -pie"
 
 ENV GPG_KEYS A917B1ECDA84AEC2B568FED6F50ABC807BD5DCD0 528995BFEDFBA7191D46839EF9BA0ADA31CBD89E 1729F83938DA44E27BA0F4D3DBDB397470D12172
 
-ENV PHP_VERSION 5.4.45
-ENV PHP_URL="https://www.php.net/get/php-5.4.45.tar.gz/from/this/mirror" PHP_ASC_URL="https://www.php.net/get/php-5.4.45.tar.gz.asc/from/this/mirror"
-ENV PHP_SHA256="25bc4723955f4e352935258002af14a14a9810b491a19400d76fcdfa9d04b28f" PHP_MD5=""
+ENV PHP_VERSION 5.3.29
+ENV PHP_URL="https://www.php.net/get/php-5.3.29.tar.gz/from/this/mirror" PHP_ASC_URL="https://www.php.net/get/php-5.3.29.tar.gz.asc/from/this/mirror"
+ENV PHP_SHA256="57cf097de3d6c3152dda342f62b1b2e9c988f4cfe300ccfe3c11f3c207a0e317" PHP_MD5=""
 
 RUN set -xe; \
 	\
@@ -170,7 +170,6 @@ RUN set -eux; \
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-		libcurl4-openssl-dev \
 		libedit-dev \
 		libsqlite3-dev \
 		libssl-dev \
@@ -180,6 +179,12 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
+	curl -o curl-7.21.7.tar.gz	https://curl.haxx.se/download/curl-7.21.7.tar.gz; \
+	mkdir /usr/src/curl; \
+	tar -xzvf curl-7.21.7.tar.gz -C /usr/src/curl --strip-components=1; \
+	cd /usr/src/curl; \
+	./configure --prefix=/usr/local; \
+	make & make install; \
 	export \
 		CFLAGS="$PHP_CFLAGS" \
 		CPPFLAGS="$PHP_CPPFLAGS" \
@@ -190,9 +195,9 @@ RUN set -eux; \
 	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
 	debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
 # https://bugs.php.net/bug.php?id=74125
-	if [ ! -d /usr/include/curl ]; then \
-		ln -sT "/usr/include/$debMultiarch/curl" /usr/local/include/curl; \
-	fi; \
+	# if [ ! -d /usr/local/include/curl ]; then \
+	# 	ln -sT "/usr/include/$debMultiarch/curl" /usr/local/include/curl; \
+	# fi; \
 	./configure \
 		--build="$gnuArch" \
 		--with-config-file-path="$PHP_INI_DIR" \
@@ -215,6 +220,7 @@ RUN set -eux; \
 		--with-libedit \
 		--with-openssl \
 		--with-zlib \
+		
 		\
 # bundled pcre does not support JIT on s390x
 # https://manpages.debian.org/stretch/libpcre3-dev/pcrejit.3.en.html#AVAILABILITY_OF_JIT_SUPPORT
