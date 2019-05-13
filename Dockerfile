@@ -119,9 +119,9 @@ ENV PHP_LDFLAGS="-Wl,-O1 -Wl,--hash-style=both -pie"
 
 ENV GPG_KEYS A917B1ECDA84AEC2B568FED6F50ABC807BD5DCD0 528995BFEDFBA7191D46839EF9BA0ADA31CBD89E 1729F83938DA44E27BA0F4D3DBDB397470D12172
 
-ENV PHP_VERSION 5.6.40
-ENV PHP_URL="https://www.php.net/get/php-5.6.40.tar.xz/from/this/mirror" PHP_ASC_URL="https://www.php.net/get/php-5.6.40.tar.xz.asc/from/this/mirror"
-ENV PHP_SHA256="1369a51eee3995d7fbd1c5342e5cc917760e276d561595b6052b21ace2656d1c" PHP_MD5=""
+ENV PHP_VERSION 5.4.45
+ENV PHP_URL="https://www.php.net/get/php-5.4.45.tar.gz/from/this/mirror" PHP_ASC_URL="https://www.php.net/get/php-5.4.45.tar.gz.asc/from/this/mirror"
+ENV PHP_SHA256="25bc4723955f4e352935258002af14a14a9810b491a19400d76fcdfa9d04b28f" PHP_MD5=""
 
 RUN set -xe; \
 	\
@@ -141,13 +141,13 @@ RUN set -xe; \
 	mkdir -p /usr/src; \
 	cd /usr/src; \
 	\
-	wget -O php.tar.xz "$PHP_URL"; \
+	wget -O php.tar.gz "$PHP_URL"; \
 	\
 	if [ -n "$PHP_SHA256" ]; then \
-		echo "$PHP_SHA256 *php.tar.xz" | sha256sum -c -; \
+		echo "$PHP_SHA256 *php.tar.gz" | sha256sum -c -; \
 	fi; \
 	if [ -n "$PHP_MD5" ]; then \
-		echo "$PHP_MD5 *php.tar.xz" | md5sum -c -; \
+		echo "$PHP_MD5 *php.tar.gz" | md5sum -c -; \
 	fi; \
 	\
 	# if [ -n "$PHP_ASC_URL" ]; then \
@@ -164,6 +164,7 @@ RUN set -xe; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps
 
 COPY docker-php-source /usr/local/bin/
+
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
