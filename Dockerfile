@@ -23,6 +23,8 @@ FROM centos:7
     ; \
     yum install -y httpd mod_ssl \
     ; \
+    yum install -y wget \
+    ; \
     pecl install http://pecl.php.net/get/redis-4.3.0.tgz \
     ; \
 # tar -xzvf redis-4.3.0.tgz \
