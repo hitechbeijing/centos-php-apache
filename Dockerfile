@@ -1,6 +1,6 @@
 FROM registry.cn-hangzhou.aliyuncs.com/hitechbeijing/c7-systemd
-# RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-# RUN curl -o /etc/yum.repos.d/CentOS7-Base-163.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
+RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+RUN curl -o /etc/yum.repos.d/CentOS7-Base-163.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
 # RUN yum clean all
 # RUN yum makecache
   RUN yum install -y php \
@@ -32,7 +32,8 @@ RUN wget https://codeload.github.com/alanxz/rabbitmq-c/tar.gz/v0.9.0 -O /tmp/rab
 WORKDIR /tmp
 RUN tar -xzvf rabbitmq-c-0.9.0.tar.gz
 WORKDIR /tmp/rabbitmq-c-0.9.0
-RUN mkdir build && cd build
+RUN mkdir build
+WORKDIR /tmp/rabbitmq-c-0.9.0/build
 RUN cmake ..
 RUN cmake --build .
 RUN make install
