@@ -28,10 +28,10 @@ WORKDIR /tmp/rabbitmq-c-0.9.0/build
 RUN cmake ..
 RUN cmake --build .
 RUN make install
-RUN curl http://pecl.php.net/get/amqp-1.9.3.tgz -o /tmp/amqp-1.9.3.tgz
+RUN curl http://pecl.php.net/get/amqp-1.9.4.tgz -o /tmp/amqp-1.9.4.tgz
 WORKDIR /tmp
-RUN tar -xzvf amqp-1.9.3.tgz
-WORKDIR /tmp/amqp-1.9.3
+RUN tar -xzvf amqp-1.9.4.tgz
+WORKDIR /tmp/amqp-1.9.4
 RUN phpize
 RUN ./configure --with-amqp --with-librabbitmq-dir=/usr/local
 RUN make && make install
