@@ -27,7 +27,7 @@ FROM registry.cn-hangzhou.aliyuncs.com/hitechbeijing/c7-systemd
     ; \
     pecl install http://pecl.php.net/get/redis-4.3.0.tgz \
     ; \
-RUN  echo -e ";  Enable redis extension module\nextension=redis.so" > /etc/php.d/redis.ini
+    echo -e ";  Enable redis extension module\nextension=redis.so" > /etc/php.d/redis.ini
 RUN wget https://codeload.github.com/alanxz/rabbitmq-c/tar.gz/v0.9.0 -O /tmp/rabbitmq-c-0.9.0.tar.gz
 WORKDIR /tmp
 RUN tar -xzvf rabbitmq-c-0.9.0.tar.gz
