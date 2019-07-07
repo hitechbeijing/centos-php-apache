@@ -23,7 +23,7 @@ RUN curl -o /etc/yum.repos.d/CentOS7-Base-163.repo http://mirrors.163.com/.help/
     ; \
     yum install -y httpd mod_ssl \
     ; \
-    yum install -y wget cmake openssl_devel \
+    yum install -y wget cmake openssl-devel \
     ; \
     pecl install http://pecl.php.net/get/redis-4.3.0.tgz \
     ; \
