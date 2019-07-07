@@ -28,7 +28,7 @@ RUN yum install -y epel-release \
     ; \
     yum install -y gcc gcc-c++ autoconf pcre-devel \
     ; \  
-    yum install -y httpd mod_ssl wget openssl-devel\
+    yum install -y httpd mod_ssl wget openssl-devel cmake \
     ; \    
     pecl install http://pecl.php.net/get/redis-4.3.0.tgz \
     ; \
